@@ -13,21 +13,30 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import com.hardis.reference.exception.ReferenceException;
 import com.hardis.reference.model.Color;
-import com.hardis.reference.model.ContenuErroner;
 import com.hardis.reference.model.Reference;
+import com.hardis.reference.model.ReferenceErroner;
 import com.hardis.reference.model.ResponseReference;
 
+/**
+ * <b>TransformeReference</b> est une Classe qui permet transformer un fichier
+ * TXT au format JSON/XML
+ * 
+ * @author AKA
+ * 
+ * @version V1.0
+ */
 public class TransformeReference {
 
-	/*
-	 * methode pour le traitement du contenu du fichier text
+	/**
+	 * <b>createReference</b> est une methode qui traite chaque ligne du fichier txt
+	 * passer en parametres
 	 * 
 	 * @param inputFile
-	 * 
 	 * @return ResponseReference
-	 * 
+	 * @throws ReferenceException
 	 * @throws IOException
 	 */
+
 	public ResponseReference createReference(String inputFile) throws ReferenceException, IOException {
 		List<String> contenuFichierText = Files.lines(Paths.get(inputFile)).collect(Collectors.toList());
 
@@ -44,30 +53,39 @@ public class TransformeReference {
 				reference.setSize(Integer.parseInt(valeur[3]));
 				listeRefernce.addReference(reference);
 			} catch (ReferenceException ex) {
-				ContenuErroner error = new ContenuErroner(i, ex.getMessage(), line);
+				ReferenceErroner error = new ReferenceErroner(i, ex.getMessage(), line);
 
-				listeRefernce.addContenuErroner(error);
+				listeRefernce.addReferenceErroner(error);
 			}
 		}
 		return listeRefernce;
 	}
 
-	private boolean isNumeric(String str) {
+	/**
+	 * <b>isNumeric</b> verifie un numerique
+	 * 
+	 * @param str
+	 * @return boolean
+	 */
+	private boolean isNumeric(String valeur) {
 		try {
-			Double.parseDouble(str);
+			Double.parseDouble(valeur);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}
 		return true;
 	}
 
-	/*
-	 * methode pour la verification du contenu du fichier
+	/**
+	 * La methode <b>verifContenu</b> permet de verifier les valeurs de chaque ligne
+	 * fichier txt
 	 * 
-	 * @param String[]
+	 * @param reference
+	 * 
+	 * @throws ReferenceException
 	 */
 
-	public void verifContenu(String[] reference) {
+	public void verifContenu(String[] reference) throws ReferenceException {
 		String colors = Arrays.asList(Color.values()).toString();
 		if (reference.length != 4) {
 			throw new ReferenceException("Incorrect number of arguments");
@@ -86,17 +104,16 @@ public class TransformeReference {
 		}
 	}
 
-	/*
-	 * methode pour la verification du repertoire de sortie
+	/**
+	 * <b>verifPath</b> est une methode pour la verification du repertoire de sortie
+	 * si celui-ci n'existe pas il sera creer
 	 * 
 	 * @param inputFile
-	 * 
 	 * @param outputFile
-	 * 
 	 * @param type
-	 * 
 	 * @return File
 	 */
+
 	private File verifPath(String inputFile, String outputFile, String type) {
 		File file = null;
 
@@ -113,20 +130,19 @@ public class TransformeReference {
 				file = new File(path);
 			}
 
-			// System.out.println("path :" + path);
 		}
 
 		return file;
 	}
 
-	/*
-	 * methode pour la creation du fichier XML ou JSON
+	/**
+	 * methode pour la creation du fichier XML/JSON
 	 * 
 	 * @param inputFile
-	 * 
 	 * @param outputFile
-	 * 
 	 * @param type
+	 * @return boolean
+	 * @throws ReferenceException
 	 */
 
 	public boolean createJsonOrXlm(String inputFile, String outputFile, String type) throws ReferenceException {

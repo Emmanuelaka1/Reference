@@ -5,40 +5,81 @@ import java.util.Scanner;
 
 import com.hardis.reference.metier.TransformeReference;
 
+/**
+ * <b>ApplicationMain</b> est la classe principal du projet Reference<br>
+ * elle permettra de demarrer l'application
+ * 
+ * @author AKA
+ *
+ * @version V1.0
+ */
 public class ApplicationMain {
 
+	/**
+	 * Creation d'un object static transformeReference
+	 */
 	public static final TransformeReference transformeReference = new TransformeReference();
 
+	/**
+	 * Cette methode main est point d'entrer de l'application elle s'execute sous
+	 * forme de commande prenant les paramètres suivants en entrée : <br>
+	 * o Chemin du fichier texte <br>
+	 * o Format de sortie (XML/JSON)<br>
+	 * o Chemin du fichier en sortie<br>
+	 *
+	 * @param args prend en arguments un tableau de String
+	 * @throws IOException createJsonOrXlm
+	 */
 	public static void main(String args[]) throws IOException {
 
-		// declaration et initialisation des variables vide
+		/**
+		 * declaration et initialisation des variables
+		 */
 		String fileInput = "", type = "", fileOutput = "", fin = "";
 
-		// Notre objet Scanner,
+		/**
+		 * Creation d'un object Scanner pour la lecture des entrees du clavier,
+		 */
 		Scanner sc = new Scanner(System.in);
 
 		do {
 
 			do {
-				// On affiche une instruction
+
+				/**
+				 * Affiche d'une instruction a l'utilisateur
+				 */
 				System.out.println("merci de saisir le chemin du fichier texte");
 
-				// On récupère le fichier saisi
+				/**
+				 * Recuperation du fichier saisi
+				 */
 				fileInput = sc.nextLine();
 				System.out.println("chemin du fichier texte saisi :" + fileInput + "\n");
-				// verifier l'extension du fichier
+
+				/**
+				 * verification de l'extension du fichier saisi
+				 */
 			} while (!fileInput.endsWith(".txt"));
 
 			do {
-				// On affiche une instruction
+				/**
+				 * Affiche d'une instruction a l'utilisateur
+				 */
 				System.out.println("merci de saisir le format de sortie (XML/JSON) ? ");
-				// On récupère le type saisi
+
+				/**
+				 * Recuperation le format de sortie
+				 */
 				type = sc.nextLine();
 
 				type = type.toLowerCase();
 
 				System.out.println("le format de sortie choisi :" + type + "\n");
 
+				/**
+				 * verification du format de sortie
+				 */
 			} while (!(type.equals("xml") || type.equals("json")));
 
 			do {

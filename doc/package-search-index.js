@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.hardis.reference.exception"},{"l":"com.hardis.reference.metier"},{"l":"com.hardis.reference.model"}]
