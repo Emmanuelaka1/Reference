@@ -19,7 +19,7 @@ import com.hardis.reference.model.ResponseReference;
 
 /**
  * <b>TransformeReference</b> est une Classe qui permet transformer un fichier
- * TXT au format JSON/XML
+ * Texte au format JSON/XML
  * 
  * @author AKA
  * 
@@ -28,12 +28,12 @@ import com.hardis.reference.model.ResponseReference;
 public class TransformeReference {
 
 	/**
-	 * <b>createReference</b> est une methode qui traite chaque ligne du fichier txt
-	 * passer en parametres
+	 * <b>createReference</b> est une methode qui traite chaque ligne du fichier
+	 * texte passer en parametres
 	 * 
-	 * @param inputFile
-	 * @return ResponseReference
-	 * @throws ReferenceException
+	 * @param inputFile de type String
+	 * @return {@link ResponseReference}
+	 * @throws {@link      ReferenceException}
 	 * @throws IOException
 	 */
 
@@ -64,7 +64,7 @@ public class TransformeReference {
 	/**
 	 * <b>isNumeric</b> verifie un numerique
 	 * 
-	 * @param str
+	 * @param str de type String
 	 * @return boolean
 	 */
 	private boolean isNumeric(String valeur) {
@@ -78,11 +78,11 @@ public class TransformeReference {
 
 	/**
 	 * La methode <b>verifContenu</b> permet de verifier les valeurs de chaque ligne
-	 * fichier txt
+	 * fichier texte
 	 * 
-	 * @param reference
+	 * @param reference de type tableau de String
 	 * 
-	 * @throws ReferenceException
+	 * @throws {@link ReferenceException}
 	 */
 
 	public void verifContenu(String[] reference) throws ReferenceException {
@@ -108,20 +108,20 @@ public class TransformeReference {
 	 * <b>verifPath</b> est une methode pour la verification du repertoire de sortie
 	 * si celui-ci n'existe pas il sera creer
 	 * 
-	 * @param inputFile
-	 * @param outputFile
-	 * @param type
+	 * @param inputFile  de type String
+	 * @param outputFile de type String
+	 * @param type       de tye String
 	 * @return File
 	 */
 
-	private File verifPath(String inputFile, String outputFile, String type) {
+	public File verifPath(String inputFile, String outputFile, String type) {
 		File file = null;
 
 		if (!outputFile.isEmpty()) {
 			file = new File(outputFile);
 
 			String path = file.getPath().toLowerCase();
-			if (!path.endsWith(".json") || !path.endsWith(".xml")) {
+			if (!(path.endsWith(".json") || path.endsWith(".xml"))) {
 				String fileName = new File(inputFile).getName();
 				int last = fileName.indexOf(".");
 				path = new File(inputFile).getPath();
@@ -129,7 +129,15 @@ public class TransformeReference {
 						+ fileName.substring(0, last) + "." + type;
 				file = new File(path);
 			}
+			// System.out.println("path " + path);
 
+		} else {
+			String fileName = new File(inputFile).getName();
+			int last = fileName.indexOf(".");
+			String path = new File(inputFile).getPath();
+			path = path.substring(0, path.lastIndexOf(File.separator)) + File.separator
+					+ fileName.substring(0, last) + "." + type;
+			file = new File(path);
 		}
 
 		return file;
@@ -138,9 +146,9 @@ public class TransformeReference {
 	/**
 	 * methode pour la creation du fichier XML/JSON
 	 * 
-	 * @param inputFile
-	 * @param outputFile
-	 * @param type
+	 * @param inputFile  de type String
+	 * @param outputFile de type String
+	 * @param type       de tye String
 	 * @return boolean
 	 * @throws ReferenceException
 	 */

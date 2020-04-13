@@ -16,7 +16,7 @@ public class ReferenceErroner {
 	 * Le champ <b>line</b> permet de serialiser le nom de variable line et le
 	 * numero de ligne erroner
 	 * 
-	 * @see ReferenceErroner#setLine(int)
+	 * @see ReferenceErroner#line
 	 */
 	@JacksonXmlProperty(isAttribute = true)
 	private int line;
@@ -25,7 +25,7 @@ public class ReferenceErroner {
 	 * Le champ <b>message</b> permet de serialiser le contenu de message et le
 	 * champ message erroner de fichier txt
 	 * 
-	 * @see ReferenceErroner#setMessage(String)
+	 * @see ReferenceErroner#message
 	 */
 	@JacksonXmlProperty(isAttribute = true)
 	private String message;
@@ -33,7 +33,7 @@ public class ReferenceErroner {
 	/**
 	 * Le champ <b>value</b> permet de serialiser le contenu de la ligne erroner de
 	 * 
-	 * @see ReferenceErroner#setLine(int)
+	 * @see ReferenceErroner#value
 	 */
 	@JacksonXmlText
 	private String value;
@@ -48,11 +48,11 @@ public class ReferenceErroner {
 	/**
 	 * Constructeur <b>ReferenceErroner</b> avec parametres
 	 * 
-	 * @param line
+	 * @param line    de type int
 	 * 
-	 * @param message
+	 * @param message de type String
 	 * 
-	 * @param value
+	 * @param value   de type String
 	 * 
 	 * @see ReferenceErroner#line
 	 * 
@@ -78,7 +78,7 @@ public class ReferenceErroner {
 	/**
 	 * Met a jour la variable line
 	 * 
-	 * @param line
+	 * @param line de type int
 	 */
 	public void setLine(int line) {
 		this.line = line;
@@ -96,7 +96,7 @@ public class ReferenceErroner {
 	/**
 	 * Met a jour le champ message
 	 * 
-	 * @param message
+	 * @param message de type String
 	 */
 	public void setMessage(String message) {
 		this.message = message;
@@ -114,7 +114,7 @@ public class ReferenceErroner {
 	/**
 	 * Met a jour le champ value
 	 * 
-	 * @param value
+	 * @param value de type String
 	 */
 	public void setValue(String value) {
 		this.value = value;

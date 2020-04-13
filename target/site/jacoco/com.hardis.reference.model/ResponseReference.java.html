@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResponseReference.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Reference</a> &gt; <a href="index.source.html" class="el_package">com.hardis.reference.model</a> &gt; <span class="el_source">ResponseReference.java</span></div><h1>ResponseReference.java</h1><pre class="source lang-java linenums">package com.hardis.reference.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+/**
+ * &lt;b&gt;ResponseReference&lt;/b&gt; est une Classe qui permet contenir tous les donnees
+ * serialiser&lt;br&gt;
+ * -le chemin du fichier texte.&lt;br&gt;
+ * -La liste des references&lt;br&gt;
+ * -La liste des references erroner&lt;br&gt;
+ * 
+ * @author AKA
+ * 
+ * @version V1.0
+ */
+@JacksonXmlRootElement(localName = &quot;report&quot;)
+public class ResponseReference {
+
+	/**
+	 * inputFile va contenir le chemin du fichier texte entree
+	 */
+	private String inputFile;
+
+	/**
+	 * references va contenir la liste des references valide
+	 */
+	private List&lt;Reference&gt; references;
+
+	/**
+	 * errors va contenir la liste des references erroner
+	 */
+	private List&lt;ReferenceErroner&gt; errors;
+
+	/**
+	 * Constructeur &lt;b&gt;ResponseReference&lt;/b&gt; sans parametre &lt;br&gt;
+	 * Il initiale les listes {@link ResponseReference#references} et
+	 * {@link ResponseReference#references}
+	 */
+<span class="nc" id="L42">	public ResponseReference() {</span>
+<span class="nc" id="L43">		this.references = new ArrayList&lt;Reference&gt;();</span>
+<span class="nc" id="L44">		this.errors = new ArrayList&lt;ReferenceErroner&gt;();</span>
+<span class="nc" id="L45">	}</span>
+
+	/**
+	 * Constructeur &lt;b&gt;ResponseReference&lt;/b&gt; avec parametre &lt;br&gt;
+	 * &lt;br&gt;
+	 * Il initiale les listes {@link ResponseReference#references} et
+	 * {@link ResponseReference#references}
+	 * 
+	 * @param inputFile de type String
+	 */
+<span class="fc" id="L55">	public ResponseReference(String inputFile) {</span>
+<span class="fc" id="L56">		this.inputFile = inputFile;</span>
+<span class="fc" id="L57">		this.references = new ArrayList&lt;Reference&gt;();</span>
+<span class="fc" id="L58">		this.errors = new ArrayList&lt;ReferenceErroner&gt;();</span>
+<span class="fc" id="L59">	}</span>
+
+	/**
+	 * Retourne la valeur du champ inputFile
+	 * 
+	 * @return inputFile
+	 */
+	public String getInputFile() {
+<span class="fc" id="L67">		return inputFile;</span>
+	}
+
+	/**
+	 * Met à jour la variable inputFile
+	 * 
+	 * @param inputFile de type String
+	 */
+	public void setInputFile(String inputFile) {
+<span class="nc" id="L76">		this.inputFile = inputFile;</span>
+<span class="nc" id="L77">	}</span>
+
+	/**
+	 * ajouter une reference a la liste des references
+	 * 
+	 * @param reference de type Reference
+	 * 
+	 * @see ResponseReference#references
+	 */
+	public void addReference(Reference reference) {
+<span class="fc" id="L87">		this.references.add(reference);</span>
+<span class="fc" id="L88">	}</span>
+
+	/**
+	 * retourne la liste des references
+	 * 
+	 * @return references
+	 */
+	public List&lt;Reference&gt; getReferences() {
+<span class="fc" id="L96">		return references;</span>
+	}
+
+	/**
+	 * ajout une refence Erroner a la liste des refences erroner
+	 * 
+	 * @param referenceErroner de type ReferenceErroner
+	 */
+	public void addReferenceErroner(ReferenceErroner error) {
+<span class="fc" id="L105">		this.errors.add(error);</span>
+<span class="fc" id="L106">	}</span>
+
+	/**
+	 * retourne la liste des references erroner
+	 * 
+	 * @return errors
+	 */
+	public List&lt;ReferenceErroner&gt; getReferenceErroners() {
+<span class="fc" id="L114">		return errors;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

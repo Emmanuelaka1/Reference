@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Reference,com.hardis.reference.exception,ReferenceException,0,4,0,0,0,2,0,1,0,1
+Reference,com.hardis.reference,ApplicationMain,111,0,10,0,22,0,8,0,3,0
+Reference,com.hardis.reference.model,Color,0,34,0,0,0,2,0,1,0,1
+Reference,com.hardis.reference.model,Reference,15,31,0,0,6,14,1,9,1,9
+Reference,com.hardis.reference.model,ResponseReference,17,37,0,0,6,12,2,6,2,6
+Reference,com.hardis.reference.model,ReferenceErroner,15,21,0,0,8,8,4,4,4,4
+Reference,com.hardis.reference.metier,TransformeReference,0,323,1,21,0,72,1,16,0,6

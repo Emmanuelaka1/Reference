@@ -18,7 +18,7 @@ public class ReferenceException extends RuntimeException {
 	 * Le constructeur ReferenceException permet Construit une nouvelle exception
 	 * avec un message.
 	 * 
-	 * @param message
+	 * @param message de type String
 	 */
 	public ReferenceException(String message) {
 		super(message);

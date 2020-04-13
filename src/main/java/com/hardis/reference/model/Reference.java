@@ -15,14 +15,29 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 public class Reference {
 
 	/**
-	 * declaration de variable
+	 * Le champ <b>numReference</b> permet de serialiser le nom de variable
+	 * numReference la valeur de numReference
 	 */
 	@JacksonXmlProperty(isAttribute = true)
 	private String numReference;
+
+	/**
+	 * Le champ <b>size</b> permet de serialiser le nom de variable size et la
+	 * valeur de size
+	 */
 	@JacksonXmlProperty(isAttribute = true)
 	private int size;
+
+	/**
+	 * Le champ <b>price</b> permet de serialiser le nom de variable price et la
+	 * valeur de price
+	 */
 	@JacksonXmlProperty(isAttribute = true)
 	private double price;
+
+	/**
+	 * Le champ <b>type</b> permet de serialiser le nom color et la valeur type
+	 */
 	@JacksonXmlProperty(localName = "color", isAttribute = true)
 	private Color type;
 
@@ -33,12 +48,12 @@ public class Reference {
 	}
 
 	/**
-	 * constructeur <b>Reference</b> avec paramètre
+	 * constructeur <b>Reference</b> avec parametres
 	 * 
-	 * @param numReference
-	 * @param size
-	 * @param price
-	 * @param type
+	 * @param numReference de type String
+	 * @param size         de type int
+	 * @param price        de type double
+	 * @param type         de type {@link Color}
 	 */
 	public Reference(String numReference, int size, double price, Color type) {
 		this.numReference = numReference;
@@ -59,7 +74,7 @@ public class Reference {
 	/**
 	 * Met a jour la variable numReference
 	 * 
-	 * @param numReference
+	 * @param numReference de type String
 	 */
 	public void setNumReference(String numReference) {
 		this.numReference = numReference;
@@ -77,7 +92,7 @@ public class Reference {
 	/**
 	 * Met a jour la variable size
 	 * 
-	 * @param size
+	 * @param size de type int
 	 */
 	public void setSize(int size) {
 		this.size = size;
@@ -95,7 +110,7 @@ public class Reference {
 	/**
 	 * Met a jour la variable price
 	 * 
-	 * @param price
+	 * @param price de type double
 	 */
 	public void setPrice(double price) {
 		this.price = price;
@@ -113,7 +128,7 @@ public class Reference {
 	/**
 	 * Met a jour la variable type
 	 * 
-	 * @param type
+	 * @param type de type Color
 	 */
 	public void setType(Color type) {
 		this.type = type;

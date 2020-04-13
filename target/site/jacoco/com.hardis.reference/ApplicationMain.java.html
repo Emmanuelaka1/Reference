@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApplicationMain.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Reference</a> &gt; <a href="index.source.html" class="el_package">com.hardis.reference</a> &gt; <span class="el_source">ApplicationMain.java</span></div><h1>ApplicationMain.java</h1><pre class="source lang-java linenums">package com.hardis.reference;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import com.hardis.reference.metier.TransformeReference;
+
+/**
+ * &lt;b&gt;ApplicationMain&lt;/b&gt; est la classe principal du projet Reference&lt;br&gt;
+ * Elle permettra de demarrer l'application
+ * 
+ * @author AKA
+ *
+ * @version V1.0
+ */
+<span class="nc" id="L16">public class ApplicationMain {</span>
+
+	/**
+	 * Creation d'une instance static TransformeReference
+	 */
+<span class="nc" id="L21">	public static final TransformeReference transformeReference = new TransformeReference();</span>
+
+	/**
+	 * Cette methode main est point d'entrer de l'application elle s'execute sous
+	 * forme de commande prenant les parametres suivants en entree : &lt;br&gt;
+	 * o Chemin du fichier texte &lt;br&gt;
+	 * o Format de sortie (XML/JSON)&lt;br&gt;
+	 * o Chemin du fichier en sortie&lt;br&gt;
+	 *
+	 * @param args prend en arguments un tableau de String
+	 * @throws IOException createJsonOrXlm
+	 */
+	public static void main(String args[]) throws IOException {
+
+		/**
+		 * declaration et initialisation des variables
+		 */
+<span class="nc" id="L38">		String fileInput = &quot;&quot;, type = &quot;&quot;, fileOutput = &quot;&quot;, fin = &quot;&quot;;</span>
+
+		/**
+		 * Creation d'un object Scanner pour la lecture des entrees du clavier,
+		 */
+<span class="nc" id="L43">		Scanner sc = new Scanner(System.in);</span>
+
+		do {
+
+			do {
+
+				/**
+				 * Affiche d'une instruction a l'utilisateur
+				 */
+<span class="nc" id="L52">				System.out.println(&quot;merci de saisir le chemin du fichier texte&quot;);</span>
+
+				/**
+				 * Recuperation du fichier saisi
+				 */
+<span class="nc" id="L57">				fileInput = sc.nextLine();</span>
+<span class="nc" id="L58">				System.out.println(&quot;chemin du fichier texte saisi :&quot; + fileInput + &quot;\n&quot;);</span>
+
+				/**
+				 * verification de l'extension du fichier saisi
+				 */
+<span class="nc bnc" id="L63" title="All 2 branches missed.">			} while (!fileInput.endsWith(&quot;.txt&quot;));</span>
+
+			do {
+				/**
+				 * Affiche d'une instruction a l'utilisateur
+				 */
+<span class="nc" id="L69">				System.out.println(&quot;merci de saisir le format de sortie (XML/JSON) ? &quot;);</span>
+
+				/**
+				 * Recuperation le format de sortie
+				 */
+<span class="nc" id="L74">				type = sc.nextLine();</span>
+
+<span class="nc" id="L76">				type = type.toLowerCase();</span>
+
+<span class="nc" id="L78">				System.out.println(&quot;le format de sortie choisi :&quot; + type + &quot;\n&quot;);</span>
+
+				/**
+				 * verification du format de sortie
+				 */
+<span class="nc bnc" id="L83" title="All 4 branches missed.">			} while (!(type.equals(&quot;xml&quot;) || type.equals(&quot;json&quot;)));</span>
+
+			do {
+<span class="nc" id="L86">				System.out.println(&quot;merci de saisir le chemin du fichier en sortie&quot;);</span>
+
+<span class="nc" id="L88">				fileOutput = sc.nextLine();</span>
+
+<span class="nc" id="L90">				System.out.println(&quot;chemin de sortie du fichier saisi :&quot; + fileOutput + &quot;\n&quot;);</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">			} while (fileOutput.equals(&quot;&quot;));</span>
+
+<span class="nc" id="L93">			transformeReference.createJsonOrXlm(fileInput, fileOutput, type);</span>
+
+<span class="nc" id="L95">			System.out.println(&quot;Merci de saisir OK pour reprendre une autre convertion \n&quot;);</span>
+
+<span class="nc" id="L97">			fin = sc.nextLine();</span>
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">		} while (fin.equalsIgnoreCase(&quot;ok&quot;));</span>
+<span class="nc" id="L100">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

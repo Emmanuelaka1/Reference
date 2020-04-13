@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReferenceErroner.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Reference</a> &gt; <a href="index.source.html" class="el_package">com.hardis.reference.model</a> &gt; <span class="el_source">ReferenceErroner.java</span></div><h1>ReferenceErroner.java</h1><pre class="source lang-java linenums">package com.hardis.reference.model;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
+
+/**
+ * &lt;b&gt;ReferenceErroner&lt;/b&gt; est une Classe qui permet de serialiser en JSON/XML
+ * les references erroner du fichier txt.&lt;br&gt;
+ * 
+ * @author AKA
+ * 
+ * @version V1.0
+ */
+public class ReferenceErroner {
+	/**
+	 * Le champ &lt;b&gt;line&lt;/b&gt; permet de serialiser le nom de variable line et le
+	 * numero de ligne erroner
+	 * 
+	 * @see ReferenceErroner#line
+	 */
+	@JacksonXmlProperty(isAttribute = true)
+	private int line;
+
+	/**
+	 * Le champ &lt;b&gt;message&lt;/b&gt; permet de serialiser le contenu de message et le
+	 * champ message erroner de fichier txt
+	 * 
+	 * @see ReferenceErroner#message
+	 */
+	@JacksonXmlProperty(isAttribute = true)
+	private String message;
+
+	/**
+	 * Le champ &lt;b&gt;value&lt;/b&gt; permet de serialiser le contenu de la ligne erroner de
+	 * 
+	 * @see ReferenceErroner#value
+	 */
+	@JacksonXmlText
+	private String value;
+
+	/**
+	 * Construsteur &lt;b&gt;ReferenceErroner&lt;/b&gt; sans parameteres
+	 * 
+	 */
+<span class="nc" id="L45">	public ReferenceErroner() {</span>
+<span class="nc" id="L46">	}</span>
+
+	/**
+	 * Constructeur &lt;b&gt;ReferenceErroner&lt;/b&gt; avec parametres
+	 * 
+	 * @param line    de type int
+	 * 
+	 * @param message de type String
+	 * 
+	 * @param value   de type String
+	 * 
+	 * @see ReferenceErroner#line
+	 * 
+	 * @see ReferenceErroner#message
+	 * 
+	 * @see ReferenceErroner#value
+	 */
+<span class="fc" id="L63">	public ReferenceErroner(int line, String message, String value) {</span>
+<span class="fc" id="L64">		this.line = line;</span>
+<span class="fc" id="L65">		this.message = message;</span>
+<span class="fc" id="L66">		this.value = value;</span>
+<span class="fc" id="L67">	}</span>
+
+	/**
+	 * retourne la valeur du champ line
+	 * 
+	 * @return line
+	 */
+	public int getLine() {
+<span class="fc" id="L75">		return line;</span>
+	}
+
+	/**
+	 * Met a jour la variable line
+	 * 
+	 * @param line de type int
+	 */
+	public void setLine(int line) {
+<span class="nc" id="L84">		this.line = line;</span>
+<span class="nc" id="L85">	}</span>
+
+	/**
+	 * Retourne la valeur du champ message
+	 * 
+	 * @return message
+	 */
+	public String getMessage() {
+<span class="fc" id="L93">		return message;</span>
+	}
+
+	/**
+	 * Met a jour le champ message
+	 * 
+	 * @param message de type String
+	 */
+	public void setMessage(String message) {
+<span class="nc" id="L102">		this.message = message;</span>
+<span class="nc" id="L103">	}</span>
+
+	/**
+	 * Retourne la valeur du champ value
+	 * 
+	 * @return value
+	 */
+	public String getValue() {
+<span class="fc" id="L111">		return value;</span>
+	}
+
+	/**
+	 * Met a jour le champ value
+	 * 
+	 * @param value de type String
+	 */
+	public void setValue(String value) {
+<span class="nc" id="L120">		this.value = value;</span>
+<span class="nc" id="L121">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

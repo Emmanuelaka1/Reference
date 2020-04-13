@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransformeReference.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Reference</a> &gt; <a href="index.source.html" class="el_package">com.hardis.reference.metier</a> &gt; <span class="el_source">TransformeReference.java</span></div><h1>TransformeReference.java</h1><pre class="source lang-java linenums">package com.hardis.reference.metier;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
+import com.hardis.reference.exception.ReferenceException;
+import com.hardis.reference.model.Color;
+import com.hardis.reference.model.Reference;
+import com.hardis.reference.model.ReferenceErroner;
+import com.hardis.reference.model.ResponseReference;
+
+/**
+ * &lt;b&gt;TransformeReference&lt;/b&gt; est une Classe qui permet transformer un fichier
+ * Texte au format JSON/XML
+ * 
+ * @author AKA
+ * 
+ * @version V1.0
+ */
+<span class="fc" id="L28">public class TransformeReference {</span>
+
+	/**
+	 * &lt;b&gt;createReference&lt;/b&gt; est une methode qui traite chaque ligne du fichier
+	 * texte passer en parametres
+	 * 
+	 * @param inputFile de type String
+	 * @return {@link ResponseReference}
+	 * @throws {@link      ReferenceException}
+	 * @throws IOException
+	 */
+
+	public ResponseReference createReference(String inputFile) throws ReferenceException, IOException {
+<span class="fc" id="L41">		List&lt;String&gt; contenuFichierText = Files.lines(Paths.get(inputFile)).collect(Collectors.toList());</span>
+
+<span class="fc" id="L43">		ResponseReference listeRefernce = new ResponseReference(inputFile);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		for (int i = 0; i &lt; contenuFichierText.size(); i++) {</span>
+<span class="fc" id="L45">			String line = contenuFichierText.get(i);</span>
+			try {
+<span class="fc" id="L47">				String[] valeur = line.split(&quot;;&quot;);</span>
+<span class="fc" id="L48">				verifContenu(valeur);</span>
+<span class="fc" id="L49">				Reference reference = new Reference();</span>
+<span class="fc" id="L50">				reference.setNumReference(valeur[0]);</span>
+<span class="fc" id="L51">				reference.setType(Color.valueOf(valeur[1]));</span>
+<span class="fc" id="L52">				reference.setPrice(Double.parseDouble(valeur[2]));</span>
+<span class="fc" id="L53">				reference.setSize(Integer.parseInt(valeur[3]));</span>
+<span class="fc" id="L54">				listeRefernce.addReference(reference);</span>
+<span class="fc" id="L55">			} catch (ReferenceException ex) {</span>
+<span class="fc" id="L56">				ReferenceErroner error = new ReferenceErroner(i, ex.getMessage(), line);</span>
+
+<span class="fc" id="L58">				listeRefernce.addReferenceErroner(error);</span>
+<span class="fc" id="L59">			}</span>
+		}
+<span class="fc" id="L61">		return listeRefernce;</span>
+	}
+
+	/**
+	 * &lt;b&gt;isNumeric&lt;/b&gt; verifie un numerique
+	 * 
+	 * @param str de type String
+	 * @return boolean
+	 */
+	private boolean isNumeric(String valeur) {
+		try {
+<span class="fc" id="L72">			Double.parseDouble(valeur);</span>
+<span class="fc" id="L73">		} catch (NumberFormatException nfe) {</span>
+<span class="fc" id="L74">			return false;</span>
+<span class="fc" id="L75">		}</span>
+<span class="fc" id="L76">		return true;</span>
+	}
+
+	/**
+	 * La methode &lt;b&gt;verifContenu&lt;/b&gt; permet de verifier les valeurs de chaque ligne
+	 * fichier texte
+	 * 
+	 * @param reference de type tableau de String
+	 * 
+	 * @throws {@link ReferenceException}
+	 */
+
+	public void verifContenu(String[] reference) throws ReferenceException {
+<span class="fc" id="L89">		String colors = Arrays.asList(Color.values()).toString();</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">		if (reference.length != 4) {</span>
+<span class="fc" id="L91">			throw new ReferenceException(&quot;Incorrect number of arguments&quot;);</span>
+		}
+<span class="fc bfc" id="L93" title="All 2 branches covered.">		if (!colors.contains(reference[1])) {</span>
+<span class="fc" id="L94">			throw new ReferenceException(&quot;Incorrect value for color&quot;);</span>
+		}
+<span class="fc bfc" id="L96" title="All 2 branches covered.">		if (reference[0].length() != 10) {</span>
+<span class="fc" id="L97">			throw new ReferenceException(&quot;Incorrect value for numReference&quot;);</span>
+		}
+<span class="fc bfc" id="L99" title="All 2 branches covered.">		if (!isNumeric(reference[2])) {</span>
+<span class="fc" id="L100">			throw new ReferenceException(&quot;Incorrect value for price&quot;);</span>
+		}
+<span class="fc bfc" id="L102" title="All 2 branches covered.">		if (!isNumeric(reference[3])) {</span>
+<span class="fc" id="L103">			throw new ReferenceException(&quot;Incorrect value for size&quot;);</span>
+		}
+<span class="fc" id="L105">	}</span>
+
+	/**
+	 * &lt;b&gt;verifPath&lt;/b&gt; est une methode pour la verification du repertoire de sortie
+	 * si celui-ci n'existe pas il sera creer
+	 * 
+	 * @param inputFile  de type String
+	 * @param outputFile de type String
+	 * @param type       de tye String
+	 * @return File
+	 */
+
+	public File verifPath(String inputFile, String outputFile, String type) {
+<span class="fc" id="L118">		File file = null;</span>
+
+<span class="fc bfc" id="L120" title="All 2 branches covered.">		if (!outputFile.isEmpty()) {</span>
+<span class="fc" id="L121">			file = new File(outputFile);</span>
+
+<span class="fc" id="L123">			String path = file.getPath().toLowerCase();</span>
+<span class="pc bpc" id="L124" title="1 of 4 branches missed.">			if (!(path.endsWith(&quot;.json&quot;) || path.endsWith(&quot;.xml&quot;))) {</span>
+<span class="fc" id="L125">				String fileName = new File(inputFile).getName();</span>
+<span class="fc" id="L126">				int last = fileName.indexOf(&quot;.&quot;);</span>
+<span class="fc" id="L127">				path = new File(inputFile).getPath();</span>
+<span class="fc" id="L128">				path = path.substring(0, path.lastIndexOf(File.separator)) + File.separator</span>
+<span class="fc" id="L129">						+ fileName.substring(0, last) + &quot;.&quot; + type;</span>
+<span class="fc" id="L130">				file = new File(path);</span>
+			}
+			// System.out.println(&quot;path &quot; + path);
+
+<span class="fc" id="L134">		} else {</span>
+<span class="fc" id="L135">			String fileName = new File(inputFile).getName();</span>
+<span class="fc" id="L136">			int last = fileName.indexOf(&quot;.&quot;);</span>
+<span class="fc" id="L137">			String path = new File(inputFile).getPath();</span>
+<span class="fc" id="L138">			path = path.substring(0, path.lastIndexOf(File.separator)) + File.separator</span>
+<span class="fc" id="L139">					+ fileName.substring(0, last) + &quot;.&quot; + type;</span>
+<span class="fc" id="L140">			file = new File(path);</span>
+		}
+
+<span class="fc" id="L143">		return file;</span>
+	}
+
+	/**
+	 * methode pour la creation du fichier XML/JSON
+	 * 
+	 * @param inputFile  de type String
+	 * @param outputFile de type String
+	 * @param type       de tye String
+	 * @return boolean
+	 * @throws ReferenceException
+	 */
+
+	public boolean createJsonOrXlm(String inputFile, String outputFile, String type) throws ReferenceException {
+<span class="fc" id="L157">		boolean result = false;</span>
+		try {
+<span class="fc" id="L159">			ResponseReference listeRefernce = createReference(inputFile);</span>
+
+<span class="fc" id="L161">			File file = verifPath(inputFile, outputFile, type);</span>
+
+<span class="fc bfc" id="L163" title="All 2 branches covered.">			if (type.equalsIgnoreCase(&quot;xml&quot;)) { // creer du fichier XML</span>
+<span class="fc" id="L164">				XmlMapper xmlMapper = new XmlMapper();</span>
+<span class="fc" id="L165">				xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);</span>
+<span class="fc" id="L166">				xmlMapper.writeValue(file, listeRefernce);</span>
+<span class="fc" id="L167">				result = true;</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">			} else if (type.equalsIgnoreCase(&quot;json&quot;)) {// creer du fichier JSON</span>
+<span class="fc" id="L169">				ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L170">				objectMapper.writeValue(file, listeRefernce);</span>
+<span class="fc" id="L171">				result = true;</span>
+<span class="fc" id="L172">			} else {</span>
+<span class="fc" id="L173">				throw new ReferenceException(&quot;le type de sortie demander non implementer&quot;);</span>
+
+			}
+
+<span class="fc" id="L177">		} catch (IOException e) {</span>
+<span class="fc" id="L178">			throw new ReferenceException(&quot;error lors du traitement&quot;);</span>
+<span class="fc" id="L179">		}</span>
+<span class="fc" id="L180">		return result;</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

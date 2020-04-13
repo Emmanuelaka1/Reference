@@ -1,0 +1,7 @@
+com\hardis\reference\ApplicationMain.class
+com\hardis\reference\model\Reference.class
+com\hardis\reference\model\ReferenceErroner.class
+com\hardis\reference\exception\ReferenceException.class
+com\hardis\reference\model\ResponseReference.class
+com\hardis\reference\metier\TransformeReference.class
+com\hardis\reference\model\Color.class

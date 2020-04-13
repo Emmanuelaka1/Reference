@@ -3,6 +3,8 @@ package com.hardis.reference.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 /**
  * <b>ResponseReference</b> est une Classe qui permet contenir tous les donnees
  * serialiser<br>
@@ -14,18 +16,28 @@ import java.util.List;
  * 
  * @version V1.0
  */
-
+@JacksonXmlRootElement(localName = "report")
 public class ResponseReference {
 
 	/**
-	 * declaration de variable
+	 * inputFile va contenir le chemin du fichier texte entree
 	 */
 	private String inputFile;
+
+	/**
+	 * references va contenir la liste des references valide
+	 */
 	private List<Reference> references;
+
+	/**
+	 * errors va contenir la liste des references erroner
+	 */
 	private List<ReferenceErroner> errors;
 
 	/**
-	 * Constructeur <b>ResponseReference</b> sans parametre
+	 * Constructeur <b>ResponseReference</b> sans parametre <br>
+	 * Il initiale les listes {@link ResponseReference#references} et
+	 * {@link ResponseReference#references}
 	 */
 	public ResponseReference() {
 		this.references = new ArrayList<Reference>();
@@ -33,14 +45,12 @@ public class ResponseReference {
 	}
 
 	/**
-	 * Constructeur <b>ResponseReference</b> avec parametre
+	 * Constructeur <b>ResponseReference</b> avec parametre <br>
+	 * <br>
+	 * Il initiale les listes {@link ResponseReference#references} et
+	 * {@link ResponseReference#references}
 	 * 
-	 * @param inputFile
-	 * 
-	 * @see {@link ResponseReference#addReference(Reference)}
-	 * 
-	 * @see {@link ResponseReference#addReferenceErroner(ReferenceErroner)}
-	 * 
+	 * @param inputFile de type String
 	 */
 	public ResponseReference(String inputFile) {
 		this.inputFile = inputFile;
@@ -60,7 +70,7 @@ public class ResponseReference {
 	/**
 	 * Met à jour la variable inputFile
 	 * 
-	 * @param inputFile
+	 * @param inputFile de type String
 	 */
 	public void setInputFile(String inputFile) {
 		this.inputFile = inputFile;
@@ -69,7 +79,7 @@ public class ResponseReference {
 	/**
 	 * ajouter une reference a la liste des references
 	 * 
-	 * @param reference
+	 * @param reference de type Reference
 	 * 
 	 * @see ResponseReference#references
 	 */
@@ -89,10 +99,10 @@ public class ResponseReference {
 	/**
 	 * ajout une refence Erroner a la liste des refences erroner
 	 * 
-	 * @param referenceErroner
+	 * @param referenceErroner de type ReferenceErroner
 	 */
-	public void addReferenceErroner(ReferenceErroner referenceErroner) {
-		this.errors.add(referenceErroner);
+	public void addReferenceErroner(ReferenceErroner error) {
+		this.errors.add(error);
 	}
 
 	/**
@@ -100,7 +110,7 @@ public class ResponseReference {
 	 * 
 	 * @return errors
 	 */
-	public List<ReferenceErroner> getContenuErroners() {
+	public List<ReferenceErroner> getReferenceErroners() {
 		return errors;
 	}
 

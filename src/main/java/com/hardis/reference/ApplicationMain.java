@@ -7,7 +7,7 @@ import com.hardis.reference.metier.TransformeReference;
 
 /**
  * <b>ApplicationMain</b> est la classe principal du projet Reference<br>
- * elle permettra de demarrer l'application
+ * Elle permettra de demarrer l'application
  * 
  * @author AKA
  *
@@ -16,13 +16,13 @@ import com.hardis.reference.metier.TransformeReference;
 public class ApplicationMain {
 
 	/**
-	 * Creation d'un object static transformeReference
+	 * Creation d'une instance static TransformeReference
 	 */
 	public static final TransformeReference transformeReference = new TransformeReference();
 
 	/**
 	 * Cette methode main est point d'entrer de l'application elle s'execute sous
-	 * forme de commande prenant les paramètres suivants en entrée : <br>
+	 * forme de commande prenant les parametres suivants en entree : <br>
 	 * o Chemin du fichier texte <br>
 	 * o Format de sortie (XML/JSON)<br>
 	 * o Chemin du fichier en sortie<br>
